@@ -39,14 +39,14 @@ async def addTrack(self, ctx, tracks):
             track = await self.bot.wavelink.get_tracks(track)
             track = track[0]
             if track is None:
-                return await channel.send(f"{self.bot.emojiList.false} The link `{tempLink}` is invalid!")
+                return await channel.send(f"The link `{tempLink}` is invalid!")
 
         requester = f"{ctx.author.name}#{ctx.author.discriminator}"
         # Add the requester
         if player.is_playing:
             queueSize = DBQueue(self.bot.dbConnection).countQueueItems(ctx.guild.id)
             if queueSize >= 50:
-                return await ctx.channel.send(f"{self.bot.emojiList.false} {ctx.author.mention} You are over the queue limit! The limit of the queue is 50 songs.")
+                return await ctx.channel.send(f"{ctx.author.mention} You are over the queue limit! The limit of the queue is 50 songs.")
             index = DBQueue(self.bot.dbConnection).getFutureIndex(ctx.guild.id)
             if index is not None:
                 index += 1

@@ -25,7 +25,7 @@ async def playTrack(self, channel, player, track, requester):
         track = await self.bot.wavelink.get_tracks(track)
         track = track[0]
         if track is None:
-            return await channel.send(f"{self.bot.emojiList.false} The song link is invalid!")
+            return await channel.send(f"The song link is invalid!")
 
     # Add the requester
     track = Track(track.id, track.info, requester=requester)

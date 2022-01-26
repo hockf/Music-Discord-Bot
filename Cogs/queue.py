@@ -24,7 +24,7 @@ class CogQueue(commands.Cog):
         tracks = DBQueue(self.bot.dbConnection).display(ctx.guild.id)
 
         if len(tracks) == 0:
-            return await ctx.channel.send(f"{self.bot.emojiList.false} {ctx.author.mention} The queue is empty!")
+            return await ctx.channel.send(f"{ctx.author.mention} The queue is empty!")
         
         for number, track in enumerate(tracks, start=1):
             

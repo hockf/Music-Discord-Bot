@@ -24,7 +24,7 @@ class CogVolume(commands.Cog):
             (int(volume)) < 0 or 
             (int(volume) > 200)
         ):
-            return await ctx.send(f"{self.bot.emojiList.false} {ctx.author.mention} The volume have to be a number between 0 and 200!")
+            return await ctx.send(f"{ctx.author.mention} The volume have to be a number between 0 and 200!")
 
         player = self.bot.wavelink.get_player(ctx.guild.id)
 

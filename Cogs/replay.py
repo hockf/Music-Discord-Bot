@@ -28,7 +28,7 @@ class CogReplay(commands.Cog):
         formerTrack = DBQueue(self.bot.dbConnection).displayFormer(ctx.guild.id)
 
         if formerTrack is None:
-            return await ctx.send(f"{self.bot.emojiList.false} {ctx.author.mention} There is no former track to replay!")
+            return await ctx.send(f"{ctx.author.mention} There is no former track to replay!")
 
         futureIndex = DBQueue(self.bot.dbConnection).getFutureIndex(ctx.guild.id)
         futureIndex += 1

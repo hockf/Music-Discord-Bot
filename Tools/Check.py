@@ -7,7 +7,7 @@ class Check:
         """Check if the user is in a voice channel"""
         if ctx.author.voice:
             return True
-        await ctx.channel.send(f"{bot.emojiList.false} {ctx.author.mention} You are not connected in a voice channel!")
+        await ctx.channel.send(f"{ctx.author.mention} You are not connected in a voice channel!")
         return False
         
     
@@ -17,7 +17,7 @@ class Check:
 
         if player.is_connected:
             return True
-        await ctx.channel.send(f"{bot.emojiList.false} {ctx.author.mention} I'm not connected in a voice channel!")
+        await ctx.channel.send(f"{ctx.author.mention} I'm not connected in a voice channel!")
         return False
 
     async def botNotInVoiceChannel(self, ctx, bot):
@@ -26,7 +26,7 @@ class Check:
 
         if not player.is_connected:
             return True
-        await ctx.channel.send(f"{bot.emojiList.false} {ctx.author.mention} I'm already connected in a voice channel!")
+        await ctx.channel.send(f"{ctx.author.mention} I'm already connected in a voice channel!")
         return False
         
 
@@ -39,7 +39,7 @@ class Check:
             (ctx.author.id in ctx.author.voice.channel.voice_states)
         ):
             return True
-        await ctx.channel.send(f"{bot.emojiList.false} {ctx.author.mention} You are not connected in the same voice channel that the bot!")
+        await ctx.channel.send(f"{ctx.author.mention} You are not connected in the same voice channel that the bot!")
         return False
     
     async def botIsPlaying(self, ctx, bot):
@@ -48,6 +48,6 @@ class Check:
 
         if player.is_playing:
             return True
-        await ctx.channel.send(f"{bot.emojiList.false} {ctx.author.mention} There is currently no song to replay!")
+        await ctx.channel.send(f"{ctx.author.mention} There is currently no song to replay!")
         return False
         

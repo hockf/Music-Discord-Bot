@@ -34,7 +34,7 @@ class HelpCog(commands.Cog, name="help command"):
                     break 
 
             if commandName2 is None:
-                await ctx.channel.send(f"{self.bot.emojiList.false} {ctx.author.mention} No command found!")   
+                await ctx.channel.send(f"{ctx.author.mention} No command found!")   
             else:
                 embed = discord.Embed(title=f"**{commandName2.name.upper()} COMMAND :**", description="[**GitHub**](https://github.com/Darkempire78/Raid-Protect-Discord-Bot)", color=discord.Colour.random())
                 embed.set_thumbnail(url=f'{self.bot.user.avatar_url}')
@@ -55,11 +55,7 @@ class HelpCog(commands.Cog, name="help command"):
                 await ctx.channel.send(embed=embed)
         else:
             message1 = (f"""
-            **{self.bot.command_prefix}help (command) :** Display the help list or the help data for a specific command.\n
-            **{self.bot.command_prefix}support :** Give a link to join the support server.
-            **{self.bot.command_prefix}invite :** Give a link to invite the bot.
-            **{self.bot.command_prefix}github :** Give the github link of the bot (source code).
-            **{self.bot.command_prefix}vote :** Give the Top.gg link to vote for the bot.
+            **{self.bot.command_prefix}help (command) :** Display the help list or the help data for a specific command.
 
             **{self.bot.command_prefix}play <Url/Query> :** Search on youtube and play the music.
             **{self.bot.command_prefix}search <Query> :** Search a song on youtube.
@@ -93,15 +89,9 @@ class HelpCog(commands.Cog, name="help command"):
             # **{self.bot.command_prefix}removedupes :** Remove all duplicates song from the queue.
             # **{self.bot.command_prefix}leavecleanup :** Remove absent user's songs from the queue.
 
-            embed = discord.Embed(title=f"__**Help page of {self.bot.user.name.upper()}**__", description="[**GitHub**](https://github.com/Darkempire78/Music-Discord-Bot)", color=discord.Colour.random())
-            embed.set_thumbnail(url=f'{self.bot.user.avatar_url}')
-            embed.add_field(name=f"__COMMANDS :__", value=message1, inline=False)
-            embed.set_footer(text="Bot Created by Darkempire#8245")
-            await ctx.channel.send(embed=embed)
-
             embed = discord.Embed(title=f"", description=f"{message2}", color=discord.Colour.random())
             embed.set_thumbnail(url=f'{self.bot.user.avatar_url}')
-            embed.set_footer(text="Bot Created by Darkempire#8245")
+            embed.set_footer(text="Based on the Better Music bot made by Darkempire78, optimized by Draenog")
             await ctx.channel.send(embed=embed)
 
 # ------------------------ BOT ------------------------ #  

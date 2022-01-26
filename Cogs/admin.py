@@ -18,14 +18,14 @@ class CogAdmin(commands.Cog):
     @commands.cooldown(1, 5, commands.BucketType.member)
     async def logout(self, ctx):
 
-        await ctx.send(f"{self.bot.emojiList.alert} Stoping process...")
+        await ctx.send(f"Stoping process...")
 
         serversInQueue = DBQueue(self.bot.dbConnection).displayAllPlaying()
 
         if serversInQueue:
             for server in serversInQueue:
                 textChannel = self.bot.get_channel(int(server[3]))
-                await textChannel.send(f"{self.bot.emojiList.alert} **THE BOT WILL RESTART !**")
+                await textChannel.send(f"**THE BOT WILL RESTART !**")
 
         with open("logoutData.json", "w+") as logoutData:
             data = {}
@@ -37,16 +37,16 @@ class CogAdmin(commands.Cog):
                     if player.is_playing:
                         await player.destroy()
                     await player.disconnect()
-                    await ctx.send(f"{self.bot.emojiList.true} Disconected from {player.guild_id}")
+                    await ctx.send(f"Disconected from {player.guild_id}")
                     print(f"Disconected from {player.guild_id}")
                 except:
-                    await ctx.send(f"{self.bot.emojiList.false} **Error :** Can't disconect from {player.guild_id}")
+                    await ctx.send(f"**Error :** Can't disconect from {player.guild_id}")
                     print(f"Error : Can't disconect from {player.guild_id}")
 
             data = json.dumps(data, indent=4, ensure_ascii=False)
             logoutData.write(data)
         
-        await ctx.send(f"{self.bot.emojiList.alert} Stoped!")
+        await ctx.send(f"Stoped!")
         print(f"\n⛔⛔⛔ Stoping process... (by {ctx.author})")
         await self.bot.logout() # Stop the bot    
 

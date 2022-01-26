@@ -26,16 +26,16 @@ class CogPlaylist(commands.Cog):
     @commands.cooldown(1, 5, commands.BucketType.member)
     async def playlist_add(self, ctx, link):
         if not link.startswith("https://www.youtube.com/watch"):
-            return await ctx.send(f"{self.bot.emojiList.false} {ctx.author.mention} The YouTube link is invalid!")
+            return await ctx.send(f"{ctx.author.mention} The YouTube link is invalid!")
         # Check if the link exists
         track = await self.bot.wavelink.get_tracks(link)
         track = track[0]
         if track is None:
-            return await ctx.send(f"{self.bot.emojiList.false} {ctx.author.mention} The YouTube link is invalid!")
+            return await ctx.send(f"{ctx.author.mention} The YouTube link is invalid!")
         
         playlistSize = DBPlaylist(self.bot.dbConnection).countPlaylistItems(ctx.author.id, "liked") # Request
         if playlistSize >= 25:
-            return await ctx.send(f"{self.bot.emojiList.false} {ctx.author.mention} Your playlist (liked) is full (25 songs)!")
+            return await ctx.send(f"{ctx.author.mention} Your playlist (liked) is full (25 songs)!")
         DBPlaylist(self.bot.dbConnection).add(ctx.author.id, "liked", track.title, track.uri) # Request
 
         embed=discord.Embed(title="Song added in your playlist", description=f"- **[{track.title}]({track.uri})**", color=discord.Colour.random())
@@ -56,7 +56,7 @@ class CogPlaylist(commands.Cog):
         playlistContent = DBPlaylist(self.bot.dbConnection).display(ctx.author.id, "liked") # Request
 
         if len(playlistContent) <= 0:
-            return await ctx.channel.send(f"{self.bot.emojiList.false} {ctx.author.mention} Your playlist (liked) is empty!")
+            return await ctx.channel.send(f"{ctx.author.mention} Your playlist (liked) is empty!")
 
         isFirstMessage = True
         message = ""
@@ -94,10 +94,10 @@ class CogPlaylist(commands.Cog):
         
         playlistContent = DBPlaylist(self.bot.dbConnection).display(ctx.author.id, "liked") # Request
         if len(playlistContent) <= 0:
-            return await ctx.channel.send(f"{self.bot.emojiList.false} {ctx.author.mention} Your playlist (liked) is empty!")
+            return await ctx.channel.send(f"{ctx.author.mention} Your playlist (liked) is empty!")
 
         if index < 0 or index > (len(playlistContent ) -1):
-            return await ctx.channel.send(f"{self.bot.emojiList.false} {ctx.author.mention} The index is available!")
+            return await ctx.channel.send(f"{ctx.author.mention} The index is available!")
         DBPlaylist(self.bot.dbConnection).remove(ctx.author.id, "liked", playlistContent[index][3]) # Request
 
         embed=discord.Embed(title="Song removed from your playlist (liked)", description=f"- **[" + playlistContent[index][2] + "](" + playlistContent[index][3] + ")**", color=discord.Colour.random())
@@ -115,7 +115,7 @@ class CogPlaylist(commands.Cog):
         
         playlistContent = DBPlaylist(self.bot.dbConnection).display(ctx.author.id, "liked") # Request
         if len(playlistContent) <= 0:
-            return await ctx.channel.send(f"{self.bot.emojiList.false} {ctx.author.mention} Your playlist (liked) is empty!")
+            return await ctx.channel.send(f"{ctx.author.mention} Your playlist (liked) is empty!")
 
         links = [i[3] for i in playlistContent]
         await addTrack(self, ctx, links)
