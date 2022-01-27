@@ -80,7 +80,7 @@ class CogLavalinkEvents(commands.Cog, wavelink.WavelinkMixin):
             return await playTrack(self, channel, payload.player, track, requester)
         
         # If not looped
-        #track = DBQueue(self.bot.dbConnection).getNextSong(payload.player.guild_id)
+        track = DBQueue(self.bot.dbConnection).getNextSong(payload.player.guild_id)
         # if track is None:
         #    currentTrack = DBQueue(self.bot.dbConnection).getCurrentSong(payload.player.guild_id)
         #    if currentTrack:
